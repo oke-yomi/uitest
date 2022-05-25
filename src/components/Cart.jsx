@@ -79,7 +79,7 @@ const Cart = ({ showCart, defaultCardDetails }) => {
 						alert(`Shopping Completed! 
             Basket Empty`);
 					}}>
-					Done Shooping
+					Done Shoping
 				</button>
 			</footer>
 		</div>
