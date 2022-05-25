@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Sidebar, Widgets } from "./components";
+import { calculateTotal } from "./features/cartSlice";
+import { Baskets } from "./pages";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const { cartItems } = useSelector((store) => store.cart);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(calculateTotal());
+	}, [cartItems]);
+
+	return (
+		<div className="flex relative">
+			<Router>
+				<Sidebar />
+
+				<Routes>
+					<Route path="/">
+						<Route index element={<Baskets />} />
+					</Route>
+				</Routes>
+
+				<Widgets />
+			</Router>
+		</div>
+	);
+};
 
 export default App;
