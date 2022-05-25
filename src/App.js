@@ -11,7 +11,7 @@ const App = () => {
 
 	useEffect(() => {
 		dispatch(calculateTotal());
-	}, [cartItems]);
+	}, [dispatch, cartItems]);
 
 	return (
 		<div className="flex relative">
